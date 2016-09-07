@@ -1,1 +1,48 @@
+int circleWidth;
+int circleHeight;
 
+void setup(){
+  background(0);
+size(640,480);
+circleWidth = 100;
+circleHeight = 100;
+
+
+ for (int y = 0; y<height; y+=40){
+    for (int x = 0; x<+width; x+=40) {
+      ellipse (x, y, 40, 40);
+    }  
+
+  }
+
+
+//noFill();
+//strokeWeight(1);
+//stroke(255);
+
+//background(80,100,100);
+//}
+//void draw(){
+  
+//  for (int i = 0; i<10; i++) {
+//  ellipse (width/2, height/2, circleWidth, circleHeight);
+//  circleWidth = circleWidth + 5;
+//  circleHeight = circleHeight +10;
+//  }
+  
+   
+  
+//circleWidth = 100;
+//circleHeight = 150;
+  
+//curve(349,-3449,452,36,217,391,740,-101);
+//curve(5788,-2196,574,36,218,402,765,-327);
+//arc(205,429,79,83,0,36);
+
+//beginShape();
+//vertex(200,60);
+//vertex(300,200);
+//vertex(400,60);
+//vertex(300,420);
+//endShape(CLOSE);;
+}
