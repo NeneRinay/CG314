@@ -1,0 +1,108 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
+//import dff.minim.*;
+Minim minim;
+AudioPlayer player;
+
+float paddleX;
+float paddleY;
+float ballX;
+float ballY;
+float xDirection=5;
+float yDirection=5;
+
+void setup() {
+  size(800, 600);
+  paddleX=5;
+  paddleY=mouseY;
+  ballX=50;
+  ballY = height/2;
+  minim=new Minim (this);
+  player =minim.loadFile("pop.mp3");
+  player.play();
+}
+
+void draw() {
+  background(0);
+  fill(255);
+  rectMode(CENTER);
+  rect(paddleX, mouseY, 20, 100);
+  rect(ballX, ballY, 20, 20);
+
+  ballX+=xDirection;
+  ballY+=yDirection;
+
+  if (ballX>width) {
+    xDirection = -xDirection;
+    audioFile.play();
+  }
+  if (ballY>height || ballY<0) {
+    yDirection=-yDirection;
+    audioFile.play();
+  }
+
+  if (ballX<20) {
+    if (ballY>mouseY-50 && ballY<mouseY+50) {
+      xDirection = -xDirection;
+    }
+  }
+  
+  
+}
+
+
+
+
+
+
+//import processing.sound.*;
+//SoundFile audioFile;
+
+//float paddleX;
+//float paddleY;
+//float ballX;
+//float ballY;
+//float xDirection=5;
+//float yDirection=5;
+
+//void setup() {
+//  size(800, 600);
+//  paddleX=5;
+//  paddleY=mouseY;
+//  ballX=50;
+//  ballY = height/2;
+//  audioFile=new SoundFile (this,"pop.mp3");
+//}
+
+//void draw() {
+//  background(0);
+//  fill(255);
+//  rectMode(CENTER);
+//  rect(paddleX, mouseY, 20, 100);
+//  rect(ballX, ballY, 20, 20);
+
+//  ballX+=xDirection;
+//  ballY+=yDirection;
+
+//  if (ballX>width) {
+//    xDirection = -xDirection;
+//    audioFile.play();
+//  }
+//  if (ballY>height || ballY<0) {
+//    yDirection=-yDirection;
+//    audioFile.play();
+//  }
+
+//  if (ballX<20) {
+//    if (ballY>mouseY-50 && ballY<mouseY+50) {
+//      xDirection = -xDirection;
+//    }
+//  }
+  
+  
+//}
