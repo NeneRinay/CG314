@@ -1,0 +1,45 @@
+float x;
+float y;
+float size=100;
+float green=255;
+
+void setup() {
+  size(800, 600);
+  background(255);
+  x=width/2;
+  y=height/2;
+  
+  
+    for(int i=0; i<10; i++){ //if this for loop is written in draw instead of setup, the smiley faces will keep appearing constantly
+    x=random(0,width);
+    y=random(0,height);
+    size=random(50,200);
+    green=random(0,255);
+  drawFace(x, y, size, green);
+  }
+}
+
+void draw() {
+  //for(int i=0; i<10; i++){
+  //  x=random(0,width);
+  //  y=random(0,height);
+  //  size=random(0,200);
+  //  green=random(0,255);
+  //drawFace(x, y, size, green);
+  //}
+  
+  //Or...
+  
+   //drawFace(x, y, size, green);
+  //drawFace(50,50,30,10);
+  //drawFace(500,30,300,90);
+}
+
+void drawFace(float tempX, float tempY, float tempSize, float tempGreen) {
+  fill(255, tempGreen, 0);
+  ellipse(tempX, tempY, tempSize, tempSize);
+  fill(0);
+  ellipse(tempX-tempSize/10, tempY-tempSize/10, tempSize/20, tempSize/20);
+  ellipse(tempX+tempSize/10, tempY-tempSize/10, tempSize/20, tempSize/20);
+  line(tempX-tempSize/5, tempY+tempSize/5, tempX+tempSize/5, tempY+tempSize/5);
+}
