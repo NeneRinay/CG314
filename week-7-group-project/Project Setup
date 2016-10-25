@@ -1,4 +1,10 @@
-// I fucked smth up so you wont be able to change size of my peppers jsyk
+//INSTRUCTIONS FOR PROFESSOR:
+// Hold LEFT mouse button to change Harambe's colors and make him slowly fade away into Harambe Heaven (don't worry, he comes back)
+// Hold RIGHT mouse button to make the cat appear in front of Harambe
+// Hold ANY KEY to make the peppers shakey shakey (The peppers were my class)
+
+
+// To my Groupies: I fucked smth up so you wont be able to change size of my peppers jsyk
 
 //float x;
 //float y;
@@ -22,7 +28,7 @@ void setup() {
   yellow=new Peppers (width/4, height/4, 60, color(240, 216, 36));
   green=new Peppers (width/1.2, height/8, 60, color(68, 129, 74));
   cat=new Cat (500, 500, 0, 0, 255);
-  Gorilla=new Harambe(width/2,height/2, 50, color(135,140,180));
+  Gorilla=new Harambe(width/2, height/2, 50, color(135, 140, 180));
 }
 
 void draw() {
@@ -33,18 +39,24 @@ void draw() {
     red.hover();
     yellow.hover();
     green.hover();
+    cat.move();
   } else {
     red.drop();
     yellow.drop();
     green.drop();
+    cat.display();
+    Gorilla.display();
   }
-  
-  if (mousePressed){
-   cat.disappear();
- }else {
-  cat.display();
-  Gorilla.display();
-}
+
+  if (mousePressed&& mouseButton==RIGHT) {
+     Gorilla.display();
+     cat.display();
+  } else if (mousePressed&& mouseButton==LEFT) {
+    Gorilla.gorillaColor();
+  } else {
+    cat.display();
+    Gorilla.display();
+  }
 
   red.display();
   yellow.display();
