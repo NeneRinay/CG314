@@ -14,6 +14,7 @@ class Harambe{
     noStroke();
     fill(theColor);
     ellipseMode(CENTER);
+    
    
    //body
    ellipse(x,y+75,size*3,size*3);
@@ -63,4 +64,8 @@ class Harambe{
   
  
   }
+  
+   void gorillaColor(){
+      theColor-=color(random(255),random(255),random(255),1);
+    }
 }
