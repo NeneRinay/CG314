@@ -32,7 +32,7 @@ class Cat {
     ellipse (x-52, y, 3, 32);
   }
 
-  void disappear() {
-    furColor = color (random(0, 255), random(255), 90);
+  void move(){
+    y+=50;
   }
 }
