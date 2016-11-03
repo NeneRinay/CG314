@@ -108,6 +108,8 @@ void setup () {
 
 void draw() {
 
+  frameRate (15);
+
   if (keyPressed) titleScreen = false; //this action takes you out of the title screen
  
  //before the game starts
