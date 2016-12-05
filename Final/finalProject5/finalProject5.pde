@@ -4,6 +4,8 @@
 //how to get my video to keep looping after the first time it plays
 //how to get the snow array to work properly so that it's not constantly redrawing the snow but still letting it gradually fall
 //how can i draw the snow once (in setup) but ensure it only gets draw on scene 7?
+//ask if i'm doomed to have a really long list of Strings for every line of text I wanna write
+//also, if the text is really long, how to make it continue on the next line without writing it as a new String
 
 
 //Rinay Apostolopoulos -- Final Project
@@ -34,6 +36,11 @@ AudioInput input;
 
 
 // int, PImage, Classes & Objects, etc...
+
+String s = "I AM TEXT";
+String d = "''SAME HERE! BOY OH BOY. I SURE DO LIKE TO BE A DOG. BORK BORK BORK.''";
+//String [] words = splitTokens(s, ", !.");
+//float xPos = 10;
 
 int scene = 1;
 int spaceCount = 0; //spaceCount is the number of times the spacebar has been pressed. this is important because it allows the space button to be used for many different functions, so long as you change this number value for each new function.
@@ -83,9 +90,9 @@ void setup() {
 void draw() {
 
   background(255);
-  
+
   //THIS CHANGES THE CURSOR FROM AN ARROW TO A HAND
-   if (mousePressed == true) {
+  if (mousePressed == true) {
     cursor(HAND); // Draw cursor as hand
   } else {
     cursor(ARROW);
@@ -122,6 +129,13 @@ void draw() {
     myScene1.display();
     myScene1.dialogueBox(); 
     //if (mousePressed && (mouseX >-30 && mouseX <+365 && mouseY >+0 && mouseY <+300)){
+    fill(255);
+    stroke(0);
+    strokeWeight(3);
+    textSize(20);
+    text(s, 35, 303);
+    textSize(15);
+    text(d, 35, 350);
     if (spaceCount>=1) {
       scene = 2;
     }
@@ -158,7 +172,7 @@ void draw() {
     if (spaceCount>=3) {
       scene = 7;
     }
-  } else if (scene == 7){
+  } else if (scene == 7) {
     myScene7.display();
     myScene7.dialogueBox();
     myScene7.snowFall();
