@@ -45,8 +45,9 @@ AudioInput input;
 // int, PImage, Classes & Objects, etc...
 
 String s = "I AM TEXT";
-String d = "''SAME HERE! BOY OH BOY. I SURE DO LIKE TO BE A DOG. BORK BORK BORK.''";
-String f = "''DOES IT HAVE TO DO WITH loop(); OR noLoop(); MAYBE?''";
+String d = "''SAME HERE! BOY OH BOY. I SURE DO LIKE TO BE A DOG. BORK BORK BORK.";
+String f = "''DOES IT HAVE TO DO WITH loop(); OR noLoop(); MAYBE?";
+String g = "EVERYONE SHOULD BE A DOG!''";
 //String [] words = splitTokens(s, ", !.");
 //float xPos = 10;
 
@@ -71,8 +72,6 @@ Theater casablanca;
 
 void setup() {
   size(800, 480);
-
-
   dog1 = loadImage("dog1.png");
   dog2 = loadImage("dog2.png");
   dog3 = loadImage("dog3.png");
@@ -120,7 +119,8 @@ void setup() {
 
 void draw() {
 
-  FrameRate(15);
+  frameRate(15);
+
   background(255);
 
   //THIS CHANGES THE CURSOR FROM AN ARROW TO A HAND
@@ -173,6 +173,12 @@ void draw() {
     myScene2.display();
     myScene2.dialogueBox();
     //if (mousePressed && (mouseX >-30 && mouseX <+365 && mouseY >+0 && mouseY <+300)){
+    fill(255);
+    textSize(20);
+    text(s, 35, 303);
+    textSize(15);
+    text(d, 35, 350);
+    text(g, 35, 370);
     if (spaceCount>=2) {
       scene = 3;
     }
@@ -227,6 +233,15 @@ void draw() {
   } else if (scene == 8) {
     myScene8.display();
     myScene8.dialogueBox();
+    fill(255);
+    textSize(15);
+    text(f, 35, 350);
+    text("WE MAY NEVER KNOOOOOW~''", 35, 370);
+    if (spaceCount>=5) {
+      scene = 9;
+    }
+  } else if (scene == 9) {
+    background(#FFD3D3);
   }
 }
 //------------------------------------------------------------------------------
