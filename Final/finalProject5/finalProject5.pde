@@ -1,12 +1,15 @@
 //DONT FORGET TO UPLOAD TO GITHUB
 //things to ask prof:
 //can i load a truly 3D model? (so that when it rotates, it doesnt turn out to just be flat)
-//how to get my video to keep looping after the first time it plays
+//(update: FIX'D) how to get my video to keep looping after the first time it plays
 //how to get the snow array to work properly so that it's not constantly redrawing the snow but still letting it gradually fall
 //how can i draw the snow once (in setup) but ensure it only gets draw on scene 7?
 //ask if i'm doomed to have a really long list of Strings for every line of text I wanna write
 //also, if the text is really long, how to make it continue on the next line without writing it as a new String
 
+//self reminder: make sure casablanca works fine (update: IT DOES! AND NOW IT LOOPS :D)
+//find out why the bgMusic won't loop after the movie scene ends :( (NVM FIXED IT B))
+//Update: as of right now, every song and video loops properly B)
 
 //Rinay Apostolopoulos -- Final Project
 //CG314
@@ -31,7 +34,11 @@ import ddf.minim.*;
 Movie video;
 
 Minim minim;
+Minim minim2;
+Minim minim3;
 AudioPlayer soundPlayer;
+AudioPlayer bgMusic;
+AudioPlayer sadMusic;
 AudioInput input;
 
 
@@ -39,6 +46,7 @@ AudioInput input;
 
 String s = "I AM TEXT";
 String d = "''SAME HERE! BOY OH BOY. I SURE DO LIKE TO BE A DOG. BORK BORK BORK.''";
+String f = "''DOES IT HAVE TO DO WITH loop(); OR noLoop(); MAYBE?''";
 //String [] words = splitTokens(s, ", !.");
 //float xPos = 10;
 
@@ -48,12 +56,16 @@ PImage dog1;
 PImage dog2;
 PImage dog3;
 PImage dog4;
+PImage dog9;
+PImage dog10;
 PImage dang;
 Scenes myScene1;
 Scenes myScene2;
 Scenes myScene3;
+Scenes myScene4;
 Scenes myScene6;
 Scenes myScene7;
+Scenes myScene8;
 Theater casablanca;
 
 
@@ -65,26 +77,45 @@ void setup() {
   dog2 = loadImage("dog2.png");
   dog3 = loadImage("dog3.png");
   dog4 = loadImage("dog4.png");
+  dog9 = loadImage("dog9.png");
+  dog10 = loadImage("dog10.png");
   dang = loadImage("dang.png");
 
   myScene1 = new Scenes (dog1, 1);
   myScene2 = new Scenes (dog2, 2);
   myScene3 = new Scenes (dog3, 3);
+  myScene4 = new Scenes (dog9, 4);
   myScene6 = new Scenes (dog4, 6);
   myScene7 = new Scenes (dang, 7);
+  myScene8 = new Scenes (dog10, 8);
   casablanca = new Theater ();
 
   video = new Movie(this, "casablancaSmall.mp4");
 
   minim = new Minim(this);
   soundPlayer = minim.loadFile("dogWisdom.mp3");
-  ////soundPlayer.play();
+  minim2 = new Minim(this);
+  minim3 = new Minim(this);
+  bgMusic = minim2.loadFile("undertaleOST.mp3");
+  //bgMusic = minim2.loadFile("vape.mp3");
+  sadMusic = minim3.loadFile("midnightSnack.mp3");
+  //sadMusic = minim3.loadFile("vape.mp3");
 
-  if (scene==5) { //THIS WHOLE PORTION DOESNT EVEN DO ANYTHING??? i could comment it out and it'd be the same
-    casablanca.driveIn2(); // this rly shouldnt be here 
-    //video.volume(0);
-    video.loop(); //it doesnt loop, it just stops :/ CUZ THIS WHOLE PORTION DON'T WORK.
-  }
+  bgMusic.play();
+  bgMusic.loop();
+
+  soundPlayer.pause();
+  video.loop();
+  video.pause();
+
+  sadMusic.loop();
+  sadMusic.pause();
+
+  //if (scene==5) { //THIS WHOLE PORTION DOESNT EVEN DO ANYTHING??? i could comment it out and it'd be the same
+  //  casablanca.driveIn2(); // this rly shouldnt be here 
+  //  //video.volume(0);
+  //  video.loop(); //it doesnt loop, it just stops :/ CUZ THIS WHOLE PORTION DON'T WORK.
+  //}
 }
 
 void draw() {
@@ -130,8 +161,6 @@ void draw() {
     myScene1.dialogueBox(); 
     //if (mousePressed && (mouseX >-30 && mouseX <+365 && mouseY >+0 && mouseY <+300)){
     fill(255);
-    stroke(0);
-    strokeWeight(3);
     textSize(20);
     text(s, 35, 303);
     textSize(15);
@@ -155,14 +184,20 @@ void draw() {
     }
   } else if (scene == 4) {
     background(255, 0, 0);
+    myScene4.display();
+    myScene4.dialogueBox();
     if (spaceCount>=1) { //as seen here 
       scene = 5;
     }
   } else if (scene == 5) {
+    bgMusic.pause(); //Pause that distracting bg music while the movie plays :)
+    //soundPlayer.play();
     casablanca.driveIn();
     video.play(); //idk man i just cant get the video to loop without the audio screwing up :/
     if (spaceCount>=2) {
       scene = 6;
+      bgMusic.play(); //bring back that distracting bg music on the next scene B)
+      bgMusic.loop();
     }
   } else if (scene == 6) {
     video.stop(); //this stops casablancaSmall.mp4 from continuing to play
@@ -171,11 +206,26 @@ void draw() {
     myScene6.dialogueBox();
     if (spaceCount>=3) {
       scene = 7;
+      bgMusic.pause();
+      sadMusic.play();
+      sadMusic.loop();
     }
   } else if (scene == 7) {
     myScene7.display();
     myScene7.dialogueBox();
+    fill(255);
+    textSize(15);
+    text(f, 35, 350);
     myScene7.snowFall();
+    if (spaceCount>=4) {
+      scene = 8;
+      sadMusic.pause();
+      bgMusic.play();
+      bgMusic.loop();
+    }
+  } else if (scene == 8) {
+    myScene8.display();
+    myScene8.dialogueBox();
   }
 }
 //------------------------------------------------------------------------------
