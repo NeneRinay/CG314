@@ -48,7 +48,7 @@ PImage dog1;
 PImage dog2;
 PImage dog3;
 PImage dog4;
-PImage damn;
+PImage dang;
 Scenes myScene1;
 Scenes myScene2;
 Scenes myScene3;
@@ -65,13 +65,13 @@ void setup() {
   dog2 = loadImage("dog2.png");
   dog3 = loadImage("dog3.png");
   dog4 = loadImage("dog4.png");
-  damn = loadImage("damn.png");
+  dang = loadImage("dang.png");
 
   myScene1 = new Scenes (dog1, 1);
   myScene2 = new Scenes (dog2, 2);
   myScene3 = new Scenes (dog3, 3);
   myScene6 = new Scenes (dog4, 6);
-  myScene7 = new Scenes (damn, 7);
+  myScene7 = new Scenes (dang, 7);
   casablanca = new Theater ();
 
   video = new Movie(this, "casablancaSmall.mp4");
