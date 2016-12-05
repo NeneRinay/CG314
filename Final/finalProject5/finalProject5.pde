@@ -120,6 +120,7 @@ void setup() {
 
 void draw() {
 
+  FrameRate(15);
   background(255);
 
   //THIS CHANGES THE CURSOR FROM AN ARROW TO A HAND
